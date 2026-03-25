@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Sidebar from "../components/dashboard/Sidebar";
+import Header from "../components/dashboard/Header";
 
 /**
  * SettingsPage Component
@@ -10,6 +12,13 @@ const SettingsPage = () => {
   const tabs = ['Organization', 'Team', 'Permissions', 'Notifications'];
 
   return (
+    <div className="flex min-h-screen bg-gray-100">
+
+      <Sidebar />
+
+      <div className="flex-1">
+
+        <Header />
     <div className="p-8 space-y-8 max-w-4xl">
       {/* Page Header */}
       <div>
@@ -189,6 +198,9 @@ const SettingsPage = () => {
           )}
         </div>
       </div>
+    </div>
+    </div>
+
     </div>
   );
 };

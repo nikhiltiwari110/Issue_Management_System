@@ -10,13 +10,12 @@ const Login = () => {
 
   const { user, login } = useContext(AuthContext);
   const navigate = useNavigate();
+
   useEffect(() => {
-
-  if (user) {
-    navigate("/dashboard");
-  }
-
-}, [user, navigate]);
+    if (user) {
+      navigate("/dashboard");
+    }
+  }, [user, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,7 +30,6 @@ const Login = () => {
       };
 
       login(token, userData);
-
       navigate("/dashboard");
 
     } catch (error) {
@@ -41,51 +39,60 @@ const Login = () => {
   };
 
   return (
-  <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-100 to-gray-300">
+    <div
+      className="flex items-center justify-center min-h-screen bg-cover bg-center relative"
+      style={{
+        backgroundImage: "url('../images/ims_1.png')" // 👉 Make sure image exists here
+      }}
+    >
 
-    <div className="bg-white w-96 p-8 rounded-2xl shadow-lg">
+      {/* 🔥 Dark Overlay */}
+      <div className="absolute inset-0 bg-black/40"></div>
 
-      <h1 className="text-2xl font-bold text-center mb-2">
-        Issue Management System
-      </h1>
+      {/* 💎 Login Card */}
+      <div className="relative bg-white/90 backdrop-blur-md w-96 p-8 rounded-2xl shadow-xl transition duration-300 hover:scale-[1.02]">
+{/* <div className="relative bg-white/20 backdrop-blur-lg w-96 p-8 rounded-2xl shadow-xl border border-gray-200 transition duration-300 hover:scale-[1.02]"> */}
+        <h1 className="text-2xl font-bold text-center mb-2">
+          Issue Management System
+        </h1>
 
-      <p className="text-sm text-gray-500 text-center mb-6">
-        Sign in to continue
-      </p>
+        <p className="text-sm text-gray-600 text-center mb-6">
+          Sign in to continue
+        </p>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
 
-        <input
-          type="email"
-          required
-          placeholder="Email"
-          className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+          <input
+            type="email"
+            required
+            placeholder="Email"
+            className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-        <input
-          type="password"
-          required
-          placeholder="Password"
-          className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          <input
+            type="password"
+            required
+            placeholder="Password"
+            className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-        <button
-          type="submit"
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-lg font-semibold transition"
-        >
-          Login
-        </button>
+          <button
+            type="submit"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-lg font-semibold transition duration-300"
+          >
+            Login
+          </button>
 
-      </form>
+        </form>
+
+      </div>
 
     </div>
-
-  </div>
-);
+  );
 };
 
 export default Login;
